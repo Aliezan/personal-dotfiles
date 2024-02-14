@@ -12,14 +12,17 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 
-alias zshconf="nvim ~/.dotfiles/.zshrc"
-alias tmuxconf="nvim ~/.dotfiles/.tmux.conf"
+alias zshrc="nvim ~/.dotfiles/.zshrc"
+alias tmuxrc="nvim ~/.dotfiles/.tmux.conf"
 alias zshsource="source ~/.dotfiles/.zshrc"
 alias dotfiles="nvim ~/.dotfiles"
 alias pn="pnpm"
 alias nvimconf="nvim ~/.config/nvim" 
 alias v="nvim"
 alias c="code"
+alias lg="lazygit"
+alias ls="colorls -A --gs -t"
+alias lst="tree -a -s -t -C -L 1"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -36,7 +39,6 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-
 export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
  
 
@@ -46,3 +48,12 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 export TERM=xterm-256color
 eval "$(starship init zsh)"
 eval "$(zellij setup --generate-auto-start zsh)"
+
+PATH=~/.console-ninja/.bin:$PATH
+[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+
+export PKG_CONFIG_PATH=/home/linuxbrew/.linuxbrew/lib/pkgconfig:/home/linuxbrew/.linuxbrew/share/pkgconfig:/home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/os/linux/pkgconfig
+export PATH="/home/linuxbrew/.linuxbrew/opt/openssl@1.1/bin:$PATH"
+
+source $(dirname $(gem which colorls))/tab_complete.sh
+PATH=$PATH:$(ruby -e 'puts Gem.bindir')
