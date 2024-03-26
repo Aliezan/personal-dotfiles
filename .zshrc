@@ -2,6 +2,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# zsh plugins
 plugins=(
   git 
   zsh-autosuggestions 
@@ -29,7 +30,10 @@ alias phpas="php artisan serve"
 alias cou="composer update"
 alias coi="composer install"
 alias gk="gitkraken"
+alias npkill="npx npkill"
+alias spdtest="speedtest-cli"
 
+# node version manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -47,21 +51,30 @@ esac
 
 export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
 
+# Golang
 export GOROOT=/snap/go/current
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
 export TERM=xterm-256color
+
+# starship init
 eval "$(starship init zsh)"
-eval "$(zellij setup --generate-auto-start zsh)"
 
 
-[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+# zellij
+if zellij list-sessions | grep -q 'workz'; then
+  zellij attach workz
+else
+  eval "$(zellij setup --generate-auto-start zsh)"
+fi
 
-export PKG_CONFIG_PATH=/home/linuxbrew/.linuxbrew/lib/pkgconfig:/home/linuxbrew/.linuxbrew/share/pkgconfig:/home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/os/linux/pkgconfig
-export PATH="/home/linuxbrew/.linuxbrew/opt/openssl@1.1/bin:$PATH"
-
+# colorls config
 source $(dirname $(gem which colorls))/tab_complete.sh
 PATH=$PATH:$(ruby -e 'puts Gem.bindir')
 
 # zoxide cd
 eval "$(zoxide init --cmd cd zsh)"
+
+# gh copilot aiias
+eval "$(gh copilot alias -- zsh)"
