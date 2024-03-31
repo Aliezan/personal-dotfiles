@@ -15,10 +15,10 @@ source $ZSH/oh-my-zsh.sh
 
 # aliases
 alias zshrc="nvim ~/.dotfiles/.zshrc"
-alias tmuxrc="nvim ~/.dotfiles/.tmux.conf"
 alias zshsrc="source ~/.dotfiles/.zshrc"
 alias dotfiles="nvim ~/.dotfiles"
 alias pn="pnpm"
+alias b="bun"
 alias nvimconf="nvim ~/.config/nvim" 
 alias v="nvim"
 alias c="code"
@@ -38,6 +38,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# homebrew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 
@@ -49,12 +50,12 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+# WSL
 export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
 
+
 # Golang
-export GOROOT=/snap/go/current
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+export GOROOT="$(brew --prefix golang)/libexec"
 
 export TERM=xterm-256color
 
@@ -62,12 +63,8 @@ export TERM=xterm-256color
 eval "$(starship init zsh)"
 
 
-# zellij
-if zellij list-sessions | grep -q 'workz'; then
-  zellij attach workz
-else
-  eval "$(zellij setup --generate-auto-start zsh)"
-fi
+# zellij autostart
+eval "$(zellij setup --generate-auto-start zsh)"
 
 # colorls config
 source $(dirname $(gem which colorls))/tab_complete.sh
