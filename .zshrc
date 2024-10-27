@@ -32,6 +32,9 @@ alias coi="composer install"
 alias gk="gitkraken"
 alias npkill="npx npkill"
 alias spdtest="speedtest-cli"
+alias z="zellij"
+alias pnd="pnpm dev"
+alias pnb="pnpm build"
 
 # node version manager
 export NVM_DIR="$HOME/.nvm"
@@ -64,7 +67,7 @@ eval "$(starship init zsh)"
 
 
 # zellij autostart
-eval "$(zellij setup --generate-auto-start zsh)"
+# eval "$(zellij setup --generate-auto-start zsh)"
 
 # colorls config
 source $(dirname $(gem which colorls))/tab_complete.sh
@@ -75,3 +78,9 @@ eval "$(zoxide init --cmd cd zsh)"
 
 # gh copilot aiias
 eval "$(gh copilot alias -- zsh)"
+
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+export PATH=$HOME/.local/bin:$PATH
+
+if [ -e /home/aliezan/.nix-profile/etc/profile.d/nix.sh ]; then . /home/aliezan/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+. "/home/aliezan/.deno/env"

@@ -1,13 +1,16 @@
 tap "homebrew/bundle"
+tap "homebrew/services"
 tap "jesseduffield/lazygit"
 tap "oven-sh/bun"
 tap "teamookla/speedtest"
-# Freely available high-quality data compressor
-brew "bzip2"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
 # Install RubyGems as Homebrew formulae
 brew "brew-gem"
+# Resource monitor. C++ version and continuation of bashtop and bpytop
+brew "btop"
+# Freely available high-quality data compressor
+brew "bzip2"
 # Library for command-line editing
 brew "readline"
 # Get a file from an HTTP, HTTPS or FTP server
@@ -26,6 +29,8 @@ brew "gh"
 brew "go"
 # C XSLT library for GNOME
 brew "libxslt"
+# Open source relational database management system
+brew "mysql"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # HTTP load generator, inspired by rakyll/hey with tui animation
